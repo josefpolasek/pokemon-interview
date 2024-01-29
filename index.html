@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokemon Fetcher</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function PokemonApp() {
+            const [pokemonName, setPokemonName] = useState('');
+            const [pokemonDetails, setPokemonDetails] = useState(null);
+
+            const getPokemonDetails = () => {
+                fetch(`http://127.0.0.1:8000/pokemon/${pokemonName}`)
+                    .then(response => response.json())
+                    .then(data => setPokemonDetails(data))
+                    .catch(error => console.error('Error:', error));
+            };
+
+            return (
+                <div>
+                    <input 
+                        type="text" 
+                        value={pokemonName} 
+                        onChange={(e) => setPokemonName(e.target.value)} 
+                    />
+                    <button onClick={getPokemonDetails}>Find Pokemon</button>
+
+                    {pokemonDetails && (
+                        <div>
+                            <h2>{pokemonDetails.Name}</h2>
+                            <p>ID: {pokemonDetails.ID}</p>
+                            <p>Type: {pokemonDetails.Type.join(', ')}</p>
+                            <p>Height: {pokemonDetails.Height}</p>
+                            <p>Weight: {pokemonDetails.Weight}</p>
+                            <p>Abilities: {pokemonDetails.Abilities.join(', ')}</p>
+                            <img src={pokemonDetails.Sprite} alt={`Sprite of ${pokemonDetails.Name}`} />
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('app'));
+        root.render(<PokemonApp />);
+    </script>
+</body>
+</html>

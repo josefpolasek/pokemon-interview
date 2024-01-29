@@ -20,3 +20,9 @@ Then go to `http://127.0.0.1:8000/pokemon/{pokemon_name}`
 example:
 ![Alt text](image1.png)
 
+### Pokemon App React
+1. run `uvicorn get_pokemon:app --reload`
+2. open index.html with live server
+
+example:
+![Alt text](image2.png)
