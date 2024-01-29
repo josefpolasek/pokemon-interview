@@ -24,5 +24,5 @@ example:
 1. run `uvicorn get_pokemon:app --reload`
 2. open index.html with live server
 
-example:
-![Alt text](image2.png)
+example:  
+<img src="image2.png" alt="Alt text" width="400"/>
