@@ -1,6 +1,6 @@
 # Pokemon Interview Task
 
-Getting data from the [Pokémon API] (https://pokeapi.co/)
+Getting data from the [Pokémon API](https://pokeapi.co/)
 
 Simple FastAPI app. Run with `uvicorn get_pokemon:app --reload`
 
